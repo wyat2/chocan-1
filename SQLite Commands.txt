@@ -11,6 +11,7 @@ http://www.sqlitetutorial.net/sqlite-date/ (date and time examples)
 https://www.sqlite.org/capi3ref.html#sqlite3 (c++ sqlite3 library docs)
 https://www.tutorialspoint.com/sqlite/sqlite_python.htm (python)
 
+https://gist.github.com/davfre/8313299 (git cheat sheet)
 
 Start interactive prompt:
 sqlite3 <databasename.db>
