@@ -1,0 +1,75 @@
+﻿Resources:
+https://www.sitepoint.com/getting-started-sqlite3-basic-commands/
+https://www.tutorialspoint.com/sqlite/sqlite_create_table.htm (sqlite specific)
+https://www.tutorialspoint.com/sql/sql-create-table.htm
+https://www.tutorialspoint.com/sql/sql-quick-guide.htm
+https://www.sqlite.org/datatype3.html (sqlite datatypes)
+https://www.sqlite.org/lang_datefunc.html (sqlite date and time funcs)
+http://www.sqlitetutorial.net/sqlite-date/ (date and time examples)
+
+
+https://www.sqlite.org/capi3ref.html#sqlite3 (c++ sqlite3 library docs)
+https://www.tutorialspoint.com/sqlite/sqlite_python.htm (python)
+
+
+Start interactive prompt:
+sqlite3 <databasename.db>
+
+
+Help menu:
+.help
+
+
+Exit:
+.exit
+
+
+CREATE TABLE:
+CREATE TABLE members(
+memberName varchar(255) NOT NULL,
+memberNumber int primary key NOT NULL,
+memberAddress varchar(255),
+memberCity varchar(255),
+memberState char(2),
+memberZip int,
+validity int);
+
+
+List tables:
+.table
+
+
+See settings:
+.show
+
+
+Recommended .show Settings:
+.headers ON
+.mode column
+
+
+Show schema (how table was created/fields):
+.schema <table_name>
+
+
+Display Table:
+SELECT * FROM <table_name>;
+SELECT column1, column2, columnN FROM table_name;
+
+
+Insert Data (create member):
+INSERT INTO members (memberName, memberNumber, memberAddress, memberCity, memberState, memberZip, validity)
+VALUES ('Bob Test', 123456789, '123 NE Street Ave', 'Portland', 'OR', 97213, 1);
+
+
+Update data:
+UPDATE table_name
+SET column1 = value1, column2 = value2...., columnN = valueN
+WHERE [condition];
+Ex. with table COMPANY and column ADDRESS and ID
+sqlite> UPDATE COMPANY SET ADDRESS = 'Texas' WHERE ID = 6;
+
+
+Linux Command in sqlite> prompt:
+.system cmd 
+.shell cmd
