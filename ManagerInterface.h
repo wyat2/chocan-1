@@ -1,35 +1,35 @@
 /*
     MangerInterface.h
-    Header for the ManagerInterface class.
+    Header for the manager_interface class.
 */
 
 #include <iostream>
 #include <cstring>
 #include <sqlite3.h>
 
-class ManagerInterface
+class manager_interface
 {
     public:
-        ManagerInterface();
+        manager_interface();
         
         //callback func for sqlite3_exec
         int callback(void * NotUsed, int num_col, 
                 char ** fields, char ** col_names);
 
-        void DisplayMenu();
-        void ReqMemberRcrd();
+        void display_menu();
+        void req_member_rcrd();
 
-        bool ReqMemberRcrd(const char * StartDate, const char * EndDate, 
+        bool req_member_rcrd(const char * StartDate, const char * EndDate, 
                 const int & MemberID);
-        void ReqPvdrRcrd();
-        bool ReqPvdrRcrd(const char * StartDate, const char * EndDate, 
+        void req_pvdr_rcrd();
+        bool req_pvdr_rcrd(const char * StartDate, const char * EndDate, 
                 const int & ProviderID);
         bool add_mbr();
         bool add_prvd();
-        bool RemPrvd();
-        bool RemMbr();
-        bool EditPrvd();
-        bool EditMbr();
+        bool rem_prvd();
+        bool rem_mbr();
+        bool edit_prvd();
+        bool edit_mbr();
 
     protected:
 
