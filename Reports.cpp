@@ -24,51 +24,51 @@ Reports::~Reports()
     sqlite3_close(db); //clost sqlite3 obj
 }
 
-int Reports::CheckMember()
+int Reports::check_Member()
 {
     return 0;
 }
 
-Member Reports::GetMember(const int & MemberID)
+Member Reports::get_Member(const int & Member_ID)
 {
-    Member AMember;
-    return AMember;
+    Member a_Member;
+    return a_Member;
 }
 
-bool Reports::AddMember(const Member & to_insert)
-{
-    return false;
-}
-
-bool Reports::AddProvider(const Provider & to_insert)
+bool Reports::add_Member(const Member & to_insert)
 {
     return false;
 }
 
-bool Reports::ServiceCodesReport()
+bool Reports::add_provider(const Provider & to_insert)
 {
-
     return false;
 }
 
-bool Reports::WeeklySummaryReport()
+bool Reports::service_codes_report()
 {
 
     return false;
 }
 
-bool Reports::WeeklyMemberReport(const int & MemberID)
+bool Reports::weekly_summary_report()
+{
+
+    return false;
+}
+
+bool Reports::weekly_Member_report(const int & Member_ID)
 {
     return false;
 }
 
-bool Reports::ProviderReport(const int & ProviderID)
+bool Reports::provider_report(const int & provider_ID)
 {
     return false;
 }
 
-bool Reports::EftReport(const char * StartDate, const char * EndDate, 
-                        const int & ProviderID)
+bool Reports::eft_report(const char * start_date, const char * end_date, 
+                        const int & provider_ID)
 {
     return false;
 }
