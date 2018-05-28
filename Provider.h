@@ -11,8 +11,8 @@ class Provider
     public:
         Provider();
         Provider(
-        char * providerName, int providerNumber, char * providerAddress, 
-        char * providerCity, char providerState[2],int providerZip, 
+        char * provider_name, int provider_number, char * provider_address, 
+        char * provider_city, char provider_state[2],int provider_zip, 
         int validity); //constructor with args
         Provider(const Provider & copy_from); //copy constructor
         ~Provider();
@@ -20,11 +20,11 @@ class Provider
     protected:
 
     private:
-        char * providerName;
-        int providerNumber;
-        char * providerAddress;
-        char * providerCity;
-        char providerState[2];
-        int providerZip;
+        char * provider_name;
+        int provider_number;
+        char * provider_address;
+        char * provider_city;
+        char provider_state[2];
+        int provider_zip;
         int validity;
 };
