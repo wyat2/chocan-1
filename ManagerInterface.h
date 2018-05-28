@@ -1,16 +1,16 @@
 /*
-    MangerInterface.h
-    Header for the manager_interface class.
+    Manger_interface.h
+    Header for the Manager_interface class.
 */
 
 #include <iostream>
 #include <cstring>
 #include <sqlite3.h>
 
-class manager_interface
+class Manager_interface
 {
     public:
-        manager_interface();
+        Manager_interface();
         
         //callback func for sqlite3_exec
         int callback(void * NotUsed, int num_col, 

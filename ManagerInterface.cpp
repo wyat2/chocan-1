@@ -1,14 +1,14 @@
 /*
-    manager_interface.cpp
-    Implementation of the manager_interface class.
+    Manager_interface.cpp
+    Implementation of the Manager_interface class.
 */
 
-#include "manager_interface.h"
+#include "Manager_interface.h"
 
 const char dbfile[12] = "chocandb.db";
 
 //default constructor
-manager_interface::manager_interface():db(NULL), num_col(0), fields(NULL), col_names(NULL)
+Manager_interface::Manager_interface():db(NULL), num_col(0), fields(NULL), col_names(NULL)
 {
     if(sqlite3_open(dbfile, &db)) //try to open database
     {
@@ -18,68 +18,68 @@ manager_interface::manager_interface():db(NULL), num_col(0), fields(NULL), col_n
     }
 }
 
-void manager_interface::display_menu()
+void Manager_interface::display_menu()
 {
 
 }
 
-void manager_interface::req_member_rcrd()
+void Manager_interface::req_member_rcrd()
 {
 
 }
         
-bool manager_interface::req_member_rcrd(const char * StartDate, 
+bool Manager_interface::req_member_rcrd(const char * StartDate, 
         const char * EndDate, const int & MemberID)
 {
     return false;
 }
 
-void manager_interface::req_pvdr_rcrd()
+void Manager_interface::req_pvdr_rcrd()
 {
 
 }
 
-bool manager_interface::req_pvdr_rcrd(const char * StartDate, 
+bool Manager_interface::req_pvdr_rcrd(const char * StartDate, 
         const char * EndDate, const int & ProviderID)
 {
     return false;
 }
 
-bool manager_interface::add_mbr()
+bool Manager_interface::add_mbr()
 {
       
     return false;
 }
 
-bool manager_interface::add_prvd()
+bool Manager_interface::add_prvd()
 {
     return false;
 }
 
-bool manager_interface::rem_prvd()
+bool Manager_interface::rem_prvd()
 {
     return false;
 }
 
-bool manager_interface::rem_mbr()
-{
-
-    return false;
-}
-
-bool manager_interface::edit_prvd()
+bool Manager_interface::rem_mbr()
 {
 
     return false;
 }
 
-bool manager_interface::edit_mbr()
+bool Manager_interface::edit_prvd()
 {
 
     return false;
 }
 
-int manager_interface::callback(void * NotUsed, int num_col, char ** fields, char ** col_names)
+bool Manager_interface::edit_mbr()
+{
+
+    return false;
+}
+
+int Manager_interface::callback(void * NotUsed, int num_col, char ** fields, char ** col_names)
 {
     //delete data members before updating them...
     if(this->fields && this->col_names)
