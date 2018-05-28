@@ -17,7 +17,7 @@ using namespace std;
 const char dbfile[12] = "chocandb.db";
 
 //callback func used for sql commands
-int callback(void *NotUsed, int num_col, char **fields, char **col_names);
+int callback(void * NotUsed, int num_col, char ** fields, char ** col_names);
 
 int main()
 {
@@ -37,6 +37,8 @@ int main()
     } else {
         cout << "\nOpened database successfully\n\n";
     }
+
+
 
     //display all members
     sql = new char [strlen("SELECT * FROM members;") + 1];
