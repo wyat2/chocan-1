@@ -7,19 +7,19 @@ class Member
 {
     public:
         Member();
-        Member(char * memberName, int memberNumber, char * memberAddress,
-        char * memberCity, char memberState[2], int memberZip, int validity);
+        Member(char * member_name, int member_number, char * member_address,
+        char * member_city, char member_state[2], int member_zip, int validity);
         Member(const Member & copy_from);
         ~Member();
 
     protected:
 
     private:
-        char * memberName;
-        int memberNumber;
-        char * memberAddress;
-        char * memberCity;
-        char memberState[2];
-        int memberZip;
+        char * member_name;
+        int member_number;
+        char * member_address;
+        char * member_city;
+        char member_state[2];
+        int member_zip;
         int validity;
 };
