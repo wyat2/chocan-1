@@ -8,17 +8,17 @@
 using namespace std;
 
 Provider::Provider(): 
-    providerName(NULL), providerNumber(0), providerAddress(NULL), 
-    providerCity(NULL), providerState(""), providerZip(0), validity(0)
+    provider_name(NULL), provider_number(0), provider_address(NULL), 
+    provider_city(NULL), provider_state(""), provider_zip(0), validity(0)
 {
 
 }
 
 Provider::Provider(
-    char * providerName, int providerNumber, char * providerAddress, 
-    char * providerCity, char providerState[2],int providerZip, int validity):
-    providerName(NULL), providerNumber(0), providerAddress(NULL),
-    providerCity(NULL), providerState(""), providerZip(0), validity(0)
+    char * provider_name, int provider_number, char * provider_address, 
+    char * provider_city, char provider_state[2],int provider_zip, int validity):
+    provider_name(NULL), provider_number(0), provider_address(NULL),
+    provider_city(NULL), provider_state(""), provider_zip(0), validity(0)
 {
 
 }

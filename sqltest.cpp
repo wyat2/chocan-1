@@ -32,10 +32,10 @@ int main()
         cout << "\nOpened database successfully\n\n";
     }
 
-    //sql = new char [strlen("UPDATE members SET validity = 1 WHERE memberNumber = 123456789;") + 1];
-    sql = new char [strlen("SELECT * FROM members;") + 1];
-    //strcpy(sql, "UPDATE members SET validity = 1 WHERE memberNumber = 023456789;");
-    strcpy(sql, "SELECT * FROM members;");
+    sql = new char [strlen("UPDATE members SET validity = 1 WHERE memberNumber = 123456789;") + 1];
+    //sql = new char [strlen("SELECT * FROM members;") + 1];
+    strcpy(sql, "UPDATE members SET validity = 1 WHERE memberNumber = 023456789;");
+    //strcpy(sql, "SELECT * FROM members;");
     if(sqlite3_exec(db, sql, callback, 0, &zErrMsg) != SQLITE_OK)
     {
         fprintf(stderr, "SQL error: %s\n", zErrMsg);

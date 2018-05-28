@@ -7,13 +7,16 @@
 
 using namespace std;
 
-class ProviderInterface : public Reports //derived from Reports
+class Provider_interface : public Reports //derived from Reports
 {
     public:
-        ProviderInterface();
-        bool ValidateMember();
-        bool RecordService();
-        void GetServiceCodes();
+        Provider_interface();
+	//bool provider_menu();
+	//bool lookup_service_code();
+	//bool service_member();
+        bool validate_member();
+        bool record_service();
+        void get_service_codes();
 
 
     protected:
