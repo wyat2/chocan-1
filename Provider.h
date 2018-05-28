@@ -13,8 +13,8 @@ class Provider
         Provider(
         char * providerName, int providerNumber, char * providerAddress, 
         char * providerCity, char providerState[2],int providerZip, 
-        int validity);
-        Provider(const Provider & copy_from);
+        int validity); //constructor with args
+        Provider(const Provider & copy_from); //copy constructor
         ~Provider();
 
     protected:

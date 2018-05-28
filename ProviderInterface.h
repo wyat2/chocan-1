@@ -11,6 +11,10 @@ class ProviderInterface : public Reports //derived from Reports
 {
     public:
         ProviderInterface();
+        bool ValidateMember();
+        bool RecordService();
+        void GetServiceCodes();
+
 
     protected:
 

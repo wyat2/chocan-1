@@ -31,7 +31,8 @@ int Reports::CheckMember()
 
 Member Reports::GetMember(const int & MemberID)
 {
-
+    Member AMember;
+    return AMember;
 }
 
 bool Reports::AddMember(const Member & to_insert)
@@ -40,6 +41,34 @@ bool Reports::AddMember(const Member & to_insert)
 }
 
 bool Reports::AddProvider(const Provider & to_insert)
+{
+    return false;
+}
+
+bool Reports::ServiceCodesReport()
+{
+
+    return false;
+}
+
+bool Reports::WeeklySummaryReport()
+{
+
+    return false;
+}
+
+bool Reports::WeeklyMemberReport(const int & MemberID)
+{
+    return false;
+}
+
+bool Reports::ProviderReport(const int & ProviderID)
+{
+    return false;
+}
+
+bool Reports::EftReport(const char * StartDate, const char * EndDate, 
+                        const int & ProviderID)
 {
     return false;
 }

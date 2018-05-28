@@ -1,6 +1,6 @@
 /*
     Member.cpp
-    Implementation of the reports class.
+    Implementation of the Member class.
 */
 
 #include <iostream>
@@ -31,6 +31,7 @@ Member::Member(const Member & copy_from)
 
 }
 
+//destructor
 Member::~Member()
 {
 
