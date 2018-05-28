@@ -3,7 +3,7 @@
     Implementation of the Manager_interface class.
 */
 
-#include "Manager_interface.h"
+#include "ManagerInterface.h"
 
 const char dbfile[12] = "chocandb.db";
 

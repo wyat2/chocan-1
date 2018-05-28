@@ -25,10 +25,10 @@ int main()
     char * sql = NULL;
     char *zErrMsg = NULL;
 
-    Member aMember;
-    Provider aProvider;
-    ProviderInterface pinter;
-    ManagerInterface minter;
+    //Member aMember;
+    ///Provider aProvider;
+    //Provider_interface pinter;
+    //Manager_interface minter;
 
     if(sqlite3_open(dbfile, &db)) //try to open database
     {
