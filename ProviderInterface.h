@@ -5,6 +5,8 @@
 
 #include "Reports.h"
 
+using namespace std;
+
 class ProviderInterface : public Reports //derived from Reports
 {
     public:

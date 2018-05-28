@@ -21,10 +21,12 @@ int callback(void *NotUsed, int num_col, char **fields, char **col_names);
 
 int main()
 {
-    sqlite3 *db; //create sqlite3 object
+    sqlite3 * db; //create sqlite3 object
     char * sql = NULL;
     char *zErrMsg = NULL;
 
+    Member aMember;
+    Provider aProvider;
     ProviderInterface pinter;
     ManagerInterface minter;
 
