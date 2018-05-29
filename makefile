@@ -8,7 +8,7 @@ CFLAGS = -g -Wall -lsqlite3
 
 # the build target executable:
 TARGET = run
-SOURCES = main.cpp Member.cpp Provider.cpp Reports.cpp ProviderInterface.cpp ManagerInterface.cpp
+SOURCES = main.cpp Member.cpp Provider.cpp Reports.cpp Provider_interface.cpp Manager_interface.cpp
 
 all:
 	$(CC) -o $(TARGET) $(SOURCES) $(CFLAGS)

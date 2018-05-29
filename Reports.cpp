@@ -16,7 +16,6 @@ Reports::Reports(): db(NULL)
     } else {
         //cout << "\nOpened database successfully\n\n";
     }
-
 }
 
 Reports::~Reports()

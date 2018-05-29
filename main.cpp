@@ -9,8 +9,8 @@
 #include <string>
 #include <cstring>
 #include <sqlite3.h>
-#include "ProviderInterface.h"
-#include "ManagerInterface.h"
+#include "Provider_interface.h"
+#include "Manager_interface.h"
 
 using namespace std;
 
