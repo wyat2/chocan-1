@@ -7,7 +7,7 @@
 
 using namespace std;
 
-class Provider_interface : public Reports //derived from Reports
+class Provider_interface //derived from Reports
 {
     public:
         Provider_interface();
@@ -22,4 +22,5 @@ class Provider_interface : public Reports //derived from Reports
     protected:
 
     private:
+        Reports a_report;
 };

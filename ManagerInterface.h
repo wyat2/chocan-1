@@ -40,4 +40,5 @@ class Manager_interface
         int num_col;
         char ** fields;
         char ** col_names;
+
 };

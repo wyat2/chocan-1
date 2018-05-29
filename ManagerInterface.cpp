@@ -5,6 +5,8 @@
 
 #include "ManagerInterface.h"
 
+using namespace std;
+
 const char dbfile[12] = "chocandb.db";
 
 //default constructor
@@ -46,8 +48,12 @@ bool Manager_interface::req_pvdr_rcrd(const char * StartDate,
 }
 
 bool Manager_interface::add_mbr()
-{
-      
+{ 
+    char temp[300]; //temp to hold input
+    char * input = NULL;
+
+    cout << "\nEnter Member Name:";
+
     return false;
 }
 
