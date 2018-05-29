@@ -27,7 +27,7 @@ int main()
 
     //Member aMember;
     ///Provider aProvider;
-    //Provider_interface pinter;
+    Provider_interface pinter;
     //Manager_interface minter;
 
     if(sqlite3_open(dbfile, &db)) //try to open database
@@ -38,7 +38,7 @@ int main()
         cout << "\nOpened database successfully\n\n";
     }
 
-
+   pinter.provider_welcome(); 
 
     //display all members
     sql = new char [strlen("SELECT * FROM members;") + 1];
