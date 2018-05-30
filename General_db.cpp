@@ -14,7 +14,8 @@ using namespace std;
 
 const char dbfile[12] = "chocandb.db";
 
-General_db::General_db():db(NULL), num_col(0), fields(NULL), col_names(NULL)
+General_db::General_db():db(NULL), error_msg(""), num_col(0), 
+    col_names(""), rows("")
 {
     cout << "In General_db constructor...";
     if(sqlite3_open(dbfile, &db)) //try to open database
@@ -28,6 +29,7 @@ General_db::General_db():db(NULL), num_col(0), fields(NULL), col_names(NULL)
 void General_db::display_members()
 {
     //display all members
+    char * zErrMsg;
     char * sql = new char [strlen("SELECT * FROM members;") + 1];
     strcpy(sql, "SELECT * FROM members;");
     if(sqlite3_exec(db, sql, callback_display, 0, &zErrMsg) != SQLITE_OK)
@@ -39,6 +41,7 @@ void General_db::display_members()
 
 int General_db::exec(string sql)
 {
+    char * zErrMsg;
     if(sqlite3_exec(db, sql.c_str(), callback_display, 0, &zErrMsg) != SQLITE_OK)
     {
         cout << "\nSQL error: " << zErrMsg << endl;
@@ -48,8 +51,26 @@ int General_db::exec(string sql)
     return true;
 }
 
-int General_db::callback_data(void * NotUsed, int num_col, char ** fields, char ** col_names)
+int General_db::callback_data(void * NotUsed, int num_col_in, char ** fields, char ** col_names_in)
 {
+    /*
+    //delete data members before updating them...
+    col_names = "";
+    rows = "";
+
+    num_col = num_col_in;
+
+    for(int i = 0; i < num_col; ++i)
+    {
+        //cout << col_names[i] << ": " << fields[i] << endl;
+        
+        //copy data into class
+        col_names = col_names + col_names_in[i] + " ";
+        rows = rows + fields[i] + " ";
+    }
+    return 1;
+    */
+    
     /*
     //delete data members before updating them...
     if(this->fields && this->col_names)

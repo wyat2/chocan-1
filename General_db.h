@@ -33,10 +33,16 @@ class General_db
         //sqlite3 * obj to interface with database
         sqlite3 * db;
         //data memebers that get updated with sqlite_exec func
+        string error_msg;
+        int num_col;
+        string col_names;
+        string rows;
+        /*
         char * zErrMsg;
         int num_col;
         char ** fields;
         char ** col_names;
+        */
 };
 
 #endif
