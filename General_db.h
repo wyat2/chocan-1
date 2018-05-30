@@ -21,6 +21,7 @@ class General_db
         void display_members();
 
         int exec(string sql);
+        void set_info(int num_col, string col_names, string rows); 
 
         static int callback_data(void * NotUsed, int num_col, 
             char ** fields, char ** col_names);

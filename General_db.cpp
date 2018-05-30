@@ -51,25 +51,21 @@ int General_db::exec(string sql)
     return true;
 }
 
-int General_db::callback_data(void * NotUsed, int num_col_in, char ** fields, char ** col_names_in)
+int General_db::callback_data(void * NotUsed, int num_col, char ** fields, char ** col_names)
 {
-    /*
-    //delete data members before updating them...
-    col_names = "";
-    rows = "";
-
-    num_col = num_col_in;
+    //how do I get results back to General_db::exec(string sql)?
+    string col_names_temp = "";
+    string rows_temp = "";
 
     for(int i = 0; i < num_col; ++i)
     {
-        //cout << col_names[i] << ": " << fields[i] << endl;
+        cout << col_names[i] << ": " << fields[i] << endl;
         
-        //copy data into class
-        col_names = col_names + col_names_in[i] + " ";
-        rows = rows + fields[i] + " ";
+        col_names_temp = col_names_temp + col_names[i] + " ";
+        rows_temp = rows_temp + fields[i] + " ";
     }
-    return 1;
-    */
+    set_info(num_col, col_names_temp, rows_temp);
+    return 0;
     
     /*
     //delete data members before updating them...
@@ -98,7 +94,7 @@ int General_db::callback_data(void * NotUsed, int num_col_in, char ** fields, ch
         strcpy(this->fields[i], fields[i]);
         strcpy(this->col_names[i], col_names[i]);
     }
-    return 1;
+    return 0;
     */
 }
 
@@ -111,3 +107,12 @@ int General_db::callback_display(void * NotUsed, int num_col,
     }
     return 0; //have to return 0 (sqlite sucess flag)
 }
+
+void General_db::set_info(int num_col, string col_names, string rows)
+{
+    this->error_msg = error_msg;
+    this->num_col = num_col;
+    this->col_names = col_names;
+    this->rows = rows;
+}
+
