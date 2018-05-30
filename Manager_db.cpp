@@ -39,21 +39,26 @@ bool Manager_db::req_pvdr_rcrd(const char * StartDate,
 
 bool Manager_db::add_mbr(const Member & to_insert)
 { 
-    
-    /*
+    string values = to_insert.get_values();
+    string sql = "INSERT INTO members (memberName, memberNumber, memberAddress, memberCity, memberState, memberZip, validity) VALUES " + to_insert.get_values();
+    cout << "\nsql: \n";
+    cout << sql << endl;
+    exec(sql);
+   /* 
     char * sql = new char [strlen("INSERT INTO members (memberName,
          memberNumber, memberAddress, memberCity, memberState, memberZip,
          validity) VALUES ( )") + 1];
     strcpy(sql, "SELECT * FROM members;");
+    */
+    /*
     if(sqlite3_exec(db, sql, callback_display, 0, &zErrMsg) != SQLITE_OK)
     {
         cout << "\nSQL error: " << zErrMsg << endl;
         sqlite3_free(zErrMsg);
         return false;
     }
-    return true;
     */
-    return false;
+    return true;
 }
 
 bool Manager_db::add_prvd()

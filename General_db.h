@@ -8,7 +8,10 @@
 
 #include <iostream>
 #include <cstring>
+#include <string>
 #include <sqlite3.h>
+
+using namespace std;
 
 class General_db
 {
@@ -17,7 +20,9 @@ class General_db
 
         void display_members();
 
-        int callback_data(void * NotUsed, int num_col, 
+        int exec(string sql);
+
+        static int callback_data(void * NotUsed, int num_col, 
             char ** fields, char ** col_names);
         static int callback_display(void * NotUsed, int num_col, 
             char ** fields, char ** col_names);

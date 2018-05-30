@@ -66,6 +66,37 @@ bool Manager_interface::req_pvdr_rcrd(const char * StartDate,
 
 bool Manager_interface::add_mbr()
 { 
+    string name = "";
+    string num = ""; 
+    string address = "";
+    string city = "";
+    string state = "";
+    string zip = "";
+    string validity = "1";
+
+    cout << "\nEnter member name: ";
+    getline(cin, name, '\n');
+
+    cout << "\nEnter member number: ";
+    getline(cin, num, '\n');
+
+    cout << "\nEnter member address: ";
+    getline(cin, address, '\n');
+
+    cout << "\nEnter member city: ";
+    getline(cin, city, '\n');
+
+    cout << "\nEnter member state: ";
+    getline(cin, state, '\n');
+
+    cout << "\nEnter member zip: ";
+    getline(cin, zip, '\n');
+
+    Member to_insert(name, num, address, city, state, zip, validity);
+    
+    manage_db.add_mbr(to_insert);
+
+    /*
     char temp[300]; //temp to hold input
 
     char * name = NULL;
@@ -126,7 +157,7 @@ bool Manager_interface::add_mbr()
         delete [] city;
     if(zip)
         delete [] zip;
-
+    */
     return false;
 }
 

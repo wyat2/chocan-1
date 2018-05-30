@@ -37,8 +37,20 @@ void General_db::display_members()
     }
 }
 
+int General_db::exec(string sql)
+{
+    if(sqlite3_exec(db, sql.c_str(), callback_display, 0, &zErrMsg) != SQLITE_OK)
+    {
+        cout << "\nSQL error: " << zErrMsg << endl;
+        sqlite3_free(zErrMsg);
+        return false;
+    }
+    return true;
+}
+
 int General_db::callback_data(void * NotUsed, int num_col, char ** fields, char ** col_names)
 {
+    /*
     //delete data members before updating them...
     if(this->fields && this->col_names)
     {
@@ -66,6 +78,7 @@ int General_db::callback_data(void * NotUsed, int num_col, char ** fields, char 
         strcpy(this->col_names[i], col_names[i]);
     }
     return 1;
+    */
 }
 
 int General_db::callback_display(void * NotUsed, int num_col, 
