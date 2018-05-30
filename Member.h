@@ -11,7 +11,7 @@ class Member
     public:
         Member();
         Member(char * member_name, char * member_number, char * member_address,
-        char * member_city, char member_state[2], char * member_zip, char * validity);
+        char * member_city, char member_state[2], char * member_zip, char validity[2]);
         Member(const Member & copy_from);
         ~Member();
 
@@ -24,9 +24,9 @@ class Member
         char * member_number;
         char * member_address;
         char * member_city;
-        char member_state[2];
+        char member_state[3];
         char * member_zip;
-        char * validity;
+        char validity[2];
 };
 
 #endif

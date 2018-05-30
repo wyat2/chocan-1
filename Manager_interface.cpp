@@ -14,8 +14,8 @@ const int NAME = 20;
 const int NUM = 9;
 const int ADDRESS = 100;
 const int CITY = 20;
-const int STATE = 2;
-const int ZIP = 2;
+const int STATE = 3;
+const int ZIP = 6;
 
 //default constructor
 Manager_interface::Manager_interface()
@@ -72,9 +72,9 @@ bool Manager_interface::add_mbr()
     char * num = NULL; 
     char * address = NULL;
     char * city = NULL;
-    char state[STATE] = {'0','0'};
+    char state[STATE];
     char * zip = NULL;
-    char validity[1] = {'1'};
+    char validity[2] = {'1', '\0'};
 
     cout << "\nEnter member name: ";
     cin.get(temp, NAME, '\n');
