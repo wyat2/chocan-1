@@ -54,6 +54,10 @@ int General_db::exec(string sql)
 int General_db::callback_data(void * NotUsed, int num_col, char ** fields, char ** col_names)
 {
     //how do I get results back to General_db::exec(string sql)?
+    //can't return from this func...
+    //can't update a argument b/c it has to have these args
+    //can't update General_db data members b/c it has to be a static func
+    //can't call a set_info func without a class obj from static func
     string col_names_temp = "";
     string rows_temp = "";
 
