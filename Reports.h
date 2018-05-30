@@ -3,6 +3,9 @@
     Header for the Reports class.
 */
 
+#ifndef Reports_db_H
+#define Reports_db_H
+
 #include <sqlite3.h>
 #include <iostream>
 #include <cstring>
@@ -29,6 +32,7 @@ class Reports
     protected:
 
     private:
-        sqlite3 * db; //sqlite3 object
-
+        //sqlite3 * db; //sqlite3 object
 };
+
+#endif

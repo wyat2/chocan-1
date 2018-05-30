@@ -3,6 +3,10 @@
     Header for the Provider class.
 */
 
+
+#ifndef Provider_H
+#define Provider_H
+
 #include <iostream>
 #include <cstring>
 
@@ -28,3 +32,5 @@ class Provider
         int provider_zip;
         int validity;
 };
+
+#endif

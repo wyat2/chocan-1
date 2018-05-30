@@ -1,11 +1,17 @@
 /*
-    Manger_interface.h
+    Manager_interface.h
     Header for the Manager_interface class.
+    This class will provide the user interface for a Manager terminal
 */
+
+#ifndef Manager_interface_H
+#define Manager_interface_H
 
 #include <iostream>
 #include <cstring>
 #include <sqlite3.h>
+#include "Manager_db.h"
+#include "Member.h"
 
 class Manager_interface
 {
@@ -13,10 +19,11 @@ class Manager_interface
         Manager_interface();
         
         //callback func for sqlite3_exec
-        int callback(void * NotUsed, int num_col, 
-                char ** fields, char ** col_names);
+        //int callback(void * NotUsed, int num_col, 
+        //        char ** fields, char ** col_names);
 
         void display_menu();
+        void display_members();
         void req_member_rcrd();
 
         bool req_member_rcrd(const char * StartDate, const char * EndDate, 
@@ -34,11 +41,8 @@ class Manager_interface
     protected:
 
     private:
-        //sqlite db object
-        sqlite3 * db;
-        //data memebers that get updated with sqlite_exec func
-        int num_col;
-        char ** fields;
-        char ** col_names;
-
+        //Manager_db obj to handle db interactions
+        Manager_db manage_db;
 };
+
+#endif

@@ -8,19 +8,21 @@
 const char dbfile[12] = "chocandb.db";
 
 //default constructor
-Reports::Reports(): db(NULL)
+Reports::Reports()//: db(NULL)
 {
+    /*
     if(sqlite3_open(dbfile, &db)) //try to open database
     {
         //cout << "\nCan't open database\n\n";
     } else {
         //cout << "\nOpened database successfully\n\n";
     }
+    */
 }
 
 Reports::~Reports()
 {
-    sqlite3_close(db); //clost sqlite3 obj
+    //sqlite3_close(db); //clost sqlite3 obj
 }
 
 int Reports::check_Member()

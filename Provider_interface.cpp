@@ -2,12 +2,19 @@
     ProviderInterface.cpp
     Implementation of the ProviderInterface class.
 */
+
 #include "Provider_interface.h"
 
 Provider_interface::Provider_interface()//default constructor
 {
 
 }
+
+void Provider_interface::display_members()
+{
+    provide_db.display_members(); 
+}
+
 
 //Provider menu simulates provider terminal "switched on"
 bool Provider_interface::provider_welcome()
