@@ -39,7 +39,17 @@ void Manager_interface::display_menu()
 
 void Manager_interface::display_members()
 {
-    manage_db.display_members();
+    //call display_members function from Manager_db obj
+    manage_db.display_members();//This func calls General_db::exec(string sql)
+
+    //get the results from obj
+    string * results;
+    int num_rows = 0;
+    manage_db.get_results(results, num_rows); 
+
+    //display and format results from Manger_db obj
+    for(int i = 0; i < num_rows; ++i)
+        cout << results[i] << endl;
 }
 
 void Manager_interface::req_member_rcrd()

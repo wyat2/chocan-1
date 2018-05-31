@@ -13,8 +13,9 @@
 using namespace std;
 
 const char dbfile[12] = "chocandb.db";
+const int MAX_RESULTS = 50;
 
-General_db::General_db():db(NULL), error_msg(""), num_col(0), 
+General_db::General_db():db(NULL), error_msg(""), num_col(0), num_rows(0), 
     col_names(""), rows("")
 {
     cout << "In General_db constructor...";
@@ -26,19 +27,77 @@ General_db::General_db():db(NULL), error_msg(""), num_col(0),
     }
 }
 
+void General_db::get_results(string *& results_in, int & num_rows_in)
+{
+    num_rows_in = this->num_rows;
+    results_in = this->results;
+}
+
 void General_db::display_members()
 {
+    //string * results = new string [50];
+    string sql("SELECT * FROM members;");
+    exec(sql);
+
+    /*
     //display all members
     char * zErrMsg;
     char * sql = new char [strlen("SELECT * FROM members;") + 1];
     strcpy(sql, "SELECT * FROM members;");
+
     if(sqlite3_exec(db, sql, callback_display, 0, &zErrMsg) != SQLITE_OK)
     {
         cout << "\nSQL error: " << zErrMsg << endl;
         sqlite3_free(zErrMsg);
     }
+    */
 }
 
+int General_db::exec(const string sql)
+{
+    int rc = 0;
+    for(int i = 0; i < num_rows + 1; ++i)
+    {
+        results[i] = "";
+    }
+    this->num_rows = 0;
+    const unsigned char * temp;
+
+    rc = sqlite3_prepare_v2(db, sql.c_str(), -1, &res, 0);
+
+    if(rc != SQLITE_OK)
+    {
+        //COPY OVER ERROR INTO DATA MEMBER HERE
+        cout << "Failed to fetch data: " << sqlite3_errmsg(db) << endl;
+        return false;
+    }
+
+    while(sqlite3_step(res) == SQLITE_ROW)
+    {
+        num_col = sqlite3_column_count(res);
+        for(int i = 0; i < num_col; ++i)
+        {
+            temp = sqlite3_column_text(res, i);
+            results[num_rows] = results[num_rows] + string(reinterpret_cast<const char *>(temp)) + " ";
+        }
+        ++this->num_rows;
+    }
+
+    /*
+    //to test that results got populated correctly...
+    for(int i = 0; i < num_rows; ++i)
+    {
+        cout << results[i] << endl;
+    }
+    */
+
+    sqlite3_finalize(res);
+
+    return true;
+}
+
+/*
+ * old way with sqlite3_exec()
 int General_db::exec(string sql)
 {
     char * zErrMsg;
@@ -50,6 +109,7 @@ int General_db::exec(string sql)
     }
     return true;
 }
+*/
 
 int General_db::callback_data(void * NotUsed, int num_col, char ** fields, char ** col_names)
 {
@@ -58,6 +118,7 @@ int General_db::callback_data(void * NotUsed, int num_col, char ** fields, char 
     //can't update a argument b/c it has to have these args
     //can't update General_db data members b/c it has to be a static func
     //can't call a set_info func without a class obj from static func
+
     string col_names_temp = "";
     string rows_temp = "";
 
@@ -68,7 +129,8 @@ int General_db::callback_data(void * NotUsed, int num_col, char ** fields, char 
         col_names_temp = col_names_temp + col_names[i] + " ";
         rows_temp = rows_temp + fields[i] + " ";
     }
-    set_info(num_col, col_names_temp, rows_temp);
+    //set_info(num_col, col_names_temp, rows_temp);
+    //rows = rows_temp;
     return 0;
     
     /*
