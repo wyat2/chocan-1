@@ -6,7 +6,6 @@
 #ifndef Provider_interface_H
 #define Provider_interface_H
 
-#include "Reports.h"
 #include "Provider_db.h"
 
 using namespace std;
@@ -19,9 +18,10 @@ class Provider_interface
         bool provider_welcome();
         bool provider_menu();
 	bool verify_provider(string id);
+	int verify_member(string id);
+        bool service_member();
 	/*
         bool lookup_service_code();
-        bool service_member();
         bool validate_member();
         bool record_service();
         void get_service_codes();
