@@ -16,6 +16,7 @@ const int ADDRESS = 100;
 const int CITY = 20;
 const int STATE = 3;
 const int ZIP = 6;
+extern const int RESULTS_MAX;
 
 //default constructor
 Manager_interface::Manager_interface()

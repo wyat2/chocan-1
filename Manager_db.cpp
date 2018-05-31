@@ -9,6 +9,7 @@ using namespace std;
 
 const int IGNORE = 100;
 const int NAME_MAX = 20;
+extern const int RESULTS_MAX;
 
 Manager_db::Manager_db()
 {

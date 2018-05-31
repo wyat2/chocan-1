@@ -13,7 +13,7 @@
 using namespace std;
 
 const char dbfile[12] = "chocandb.db";
-const int MAX_RESULTS = 50;
+extern const int RESULTS_MAX;
 
 General_db::General_db():db(NULL), error_msg(""), num_col(0), num_rows(0), 
     col_names(""), rows("")
@@ -25,6 +25,11 @@ General_db::General_db():db(NULL), error_msg(""), num_col(0), num_rows(0),
     } else {
         //cout << "\nOpened database successfully\n";
     }
+}
+
+General_db::~General_db()
+{
+    sqlite3_close(db);
 }
 
 void General_db::get_results(string *& results_in, int & num_rows_in)
@@ -40,12 +45,14 @@ string General_db::get_error()
 
 int General_db::display_members()
 {
-    //string * results = new string [50];
+    //This is an example for executing sql and using/formating results 
+    //back in Manger_interface class but we'll change to below so when we
+    //have lots of members we don't have to load them all into memory
     string sql("SELECT * FROM members;");
     return exec(sql);
 
     /*
-    //display all members
+    //display all members w/o writng to memory
     char * zErrMsg;
     char * sql = new char [strlen("SELECT * FROM members;") + 1];
     strcpy(sql, "SELECT * FROM members;");
@@ -79,7 +86,7 @@ int General_db::exec(const string sql)
         return false;
     }
 
-    while(sqlite3_step(res) == SQLITE_ROW)
+    while(sqlite3_step(res) == SQLITE_ROW && num_rows < MAX_RESULTS)
     {
         num_col = sqlite3_column_count(res);
         for(int i = 0; i < num_col; ++i)

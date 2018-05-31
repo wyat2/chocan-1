@@ -13,10 +13,13 @@
 
 using namespace std;
 
+const int MAX_RESULTS = 50;
+
 class General_db
 {
     public:
         General_db();
+        ~General_db();
 
         void get_results(string *& results, int & num_rows);
         string get_error();
@@ -46,7 +49,7 @@ class General_db
         int num_rows;
         string col_names;
         string rows;
-        string results[50];
+        string results[MAX_RESULTS];
         /*
         char * zErrMsg;
         int num_col;
