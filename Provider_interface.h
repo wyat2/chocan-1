@@ -16,15 +16,16 @@ class Provider_interface
     public:
         Provider_interface();
 
-        void display_members();
         bool provider_welcome();
         bool provider_menu();
+	bool verify_provider(string id);
+	/*
         bool lookup_service_code();
         bool service_member();
         bool validate_member();
         bool record_service();
         void get_service_codes();
-
+	*/
 
     protected:
 

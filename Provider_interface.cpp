@@ -10,26 +10,30 @@ Provider_interface::Provider_interface()//default constructor
 
 }
 
-void Provider_interface::display_members()
-{
-    provide_db.display_members(); 
-}
-
-
 //Provider menu simulates provider terminal "switched on"
 bool Provider_interface::provider_welcome()
 {
-	int provider_id;
+	string provider_id_check;
 
-	cout << "Welcome to the ChocAN Provider terminal. Please enter your 9 digit provider ID to continue: ";
-	cin >> provider_id;
-	cin.ignore();
+	cout << "Welcome to the ChocAN Provider terminal. \n";
+	cout << "Please enter your 9 digit provider ID to continue: ";
+	getline(cin, provider_id_check);
 
 	//verify provider ID: provider_verify(provider_id);
+	if(verify_provider(provider_id_check))
+		provider_menu();
 	//if(provider_id) provider_menu(); 
-	provider_menu();
 
 	return false;
+}
+
+bool Provider_interface::verify_provider(string id)
+{
+	string query = "SELECT providerNumber FROM providers WHERE providerNumber = " + id + ";";
+	provide_db.exec(query);
+	if(provide_db.results[0] != "\0")
+		return true;
+	else return false;
 }
 
 bool Provider_interface::provider_menu()
@@ -44,16 +48,18 @@ bool Provider_interface::provider_menu()
 	cin >> provider_option;
 	cin.ignore();
 
+	/*
 	if(provider_option == 1)
 		lookup_service_code();
 	else if(provider_option == 2)
 		service_member();
 	else if(provider_option ==3)
 		cout << "Exiting.." << endl;
-
+	*/
 	return false;
 }
 
+/*
 bool Provider_interface::service_member()
 {
 	int member_id;
@@ -95,3 +101,4 @@ void Provider_interface::get_service_codes()
 {
 
 }
+*/

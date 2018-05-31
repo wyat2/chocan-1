@@ -19,13 +19,11 @@ int main()
     Provider_interface p_inter;
     Manager_interface m_inter;
 
-    /*
     p_inter.provider_welcome(); 
-    */
    
-    m_inter.display_members();
+//    m_inter.display_members();
 
-    m_inter.display_menu();
+//    m_inter.display_menu();
 
     return 1;
 }
