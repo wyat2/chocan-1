@@ -41,6 +41,7 @@ class General_db
             char ** fields, char ** col_names);
         static int callback_display(void * NotUsed, int num_col, 
             char ** fields, char ** col_names);
+        //string results[MAX_RESULTS];
     protected:
 
     private:

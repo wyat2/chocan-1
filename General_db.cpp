@@ -100,14 +100,14 @@ int General_db::check_member(string memberNumber)
             + memberNumber);
     exec(sql);
     //display_results();
-    if(results[0][0] != "")
+    if(results_2d[0][0] != "")
     {
         //cout << endl << results[0][0];
-        if(results[0][0] == "-1")
+        if(results_2d[0][0] == "-1")
         {
             return -1;
         }
-        if(results[0][0] == "1")
+        if(results_2d[0][0] == "1")
         {
             return 1;
         }
@@ -122,7 +122,7 @@ void General_db::display_results()
         for(int j = 0; j < num_col; ++j) //iterates through columns
         {
             //output a column in the row until no more columns
-            cout << results[i][j] << " "; 
+            cout << results_2d[i][j] << " "; 
         }
         cout << endl; //add new line at end of row
     }
