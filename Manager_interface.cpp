@@ -53,8 +53,7 @@ void Manager_interface::display_menu()
             default:
                 cout << "Invalid entry.\n";
         }
-    }while(r != 4);
-}
+    }while(r != 4); }
 
 void Manager_interface::display_members()
 {
