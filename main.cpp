@@ -23,7 +23,7 @@ int main()
     p_inter.provider_welcome(); 
     */
    
-    m_inter.display_members();
+//    m_inter.display_members();
 
     m_inter.display_menu();
 

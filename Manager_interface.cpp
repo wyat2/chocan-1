@@ -16,7 +16,9 @@ const int ADDRESS = 100;
 const int CITY = 20;
 const int STATE = 3;
 const int ZIP = 6;
-extern const int RESULTS_MAX;
+//extern const int RESULTS_MAX;
+extern const int MAX_ROW;
+extern const int MAX_COL;
 
 //default constructor
 Manager_interface::Manager_interface()
@@ -25,17 +27,33 @@ Manager_interface::Manager_interface()
 
 void Manager_interface::display_menu()
 {
-    char r = '9';
-    cout << "\n1. Add member\n";
-    cout << ">>>";
-    cin >> r;
-    cin.ignore(IGNORE,'\n');
-    switch (r)
+    char r = '1';
+    do
     {
-        case('1'):
-            add_mbr();
-            break;
-    }
+        cout << "\n1. Check member\n";
+        cout << "2. List members\n";
+        cout << "3. Add member\n";
+        cout << "4. Exit\n";
+        cout << ">>>";
+        cin >> r;
+        cin.ignore(IGNORE,'\n');
+        switch (r)
+        {
+            case('1'):
+                check_member();
+                break;
+            case('2'):
+                display_members();
+                break;
+            case('3'):
+                add_mbr();
+                break;
+            case('4'):
+                return;
+            default:
+                cout << "Invalid entry.\n";
+        }
+    }while(r != 4);
 }
 
 void Manager_interface::display_members()
@@ -48,13 +66,50 @@ void Manager_interface::display_members()
     }
 
     //get the results from obj
-    string * results;
+    string results[MAX_ROW][MAX_COL];
     int num_rows = 0;
-    manage_db.get_results(results, num_rows); 
+    int num_col = 0;
+    manage_db.get_results(results, num_rows, num_col); 
 
+    //can call display func or do yourself like comment below
+    manage_db.display_results(); 
+
+    /*
+     * example of if you wanted to format it yourself...
     //display and format results from Manger_db obj
-    for(int i = 0; i < num_rows; ++i)
-        cout << results[i] << endl;
+    for(int i = 0; i < num_rows; ++i) //iterates through rows
+    {
+        for(int j = 0; j < num_col; ++j) //iterates through columns
+        {
+            //output a column in the row until no more columns
+            cout << results[i][j]; 
+        }
+        cout << endl; //add new line at end of row
+    }
+    */
+}
+
+int Manager_interface::check_member()
+{
+    string member_number;
+    cout << "\nEnter member number to check: ";
+    getline(cin, member_number);
+    int test = manage_db.check_member(member_number);
+    switch(test)
+    {
+        case (-1):
+            cout << "Member found but has been invalidated.\n";
+            break;
+        case (0):
+            cout << "Member not found.\n";
+            break;
+        case (1):
+            cout << "Member found!\n";
+            break;
+        default:
+            cout << "Member not found.\n";
+    }
+    return test;        
 }
 
 void Manager_interface::req_member_rcrd()
@@ -110,69 +165,6 @@ bool Manager_interface::add_mbr()
     Member to_insert(name, num, address, city, state, zip, validity);
     
     manage_db.add_mbr(to_insert);
-
-    /*
-    char temp[300]; //temp to hold input
-
-    char * name = NULL;
-    char * num = NULL; 
-    char * address = NULL;
-    char * city = NULL;
-    char state[STATE];
-    char * zip = NULL;
-    char validity[2] = {'1', '\0'};
-
-    cout << "\nEnter member name: ";
-    cin.get(temp, NAME, '\n');
-    cin.ignore(IGNORE, '\n');
-    name = new char [strlen(temp) + 1];
-    strcpy(name, temp);
-
-    cout << "\nEnter member number: ";
-    cin.get(temp, NUM, '\n');
-    cin.ignore(IGNORE, '\n');
-    num = new char [strlen(temp) + 1];
-    strcpy(num, temp);
-
-    cout << "\nEnter member address: ";
-    cin.get(temp, ADDRESS, '\n');
-    cin.ignore(IGNORE, '\n');
-    address = new char [strlen(temp) + 1];
-    strcpy(address, temp);
-
-    cout << "\nEnter member city: ";
-    cin.get(temp, CITY, '\n');
-    cin.ignore(IGNORE, '\n');
-    city = new char [strlen(temp) + 1];
-    strcpy(city, temp);
-
-    cout << "\nEnter member state: ";
-    cin.get(temp, STATE, '\n');
-    cin.ignore(IGNORE, '\n');
-    //state = new char [strlen(temp) + 1];
-    strcpy(state, temp);
-
-    cout << "\nEnter member zip: ";
-    cin.get(temp, ZIP, '\n');
-    cin.ignore(IGNORE, '\n');
-    zip = new char [strlen(temp) + 1];
-    strcpy(zip, temp);
-
-    Member to_insert(name, num, address, city, state, zip, validity);
-    
-    manage_db.add_mbr(to_insert);
-
-    if(name)
-        delete [] name;
-    if(num)
-        delete [] num;
-    if(address)
-        delete [] address;
-    if(city)
-        delete [] city;
-    if(zip)
-        delete [] zip;
-    */
     return false;
 }
 
@@ -202,7 +194,9 @@ bool Manager_interface::edit_mbr()
 {
     return false;
 }
+
 /*
+ * ignore... might use as reference if reverting back to char *
 int Manager_interface::callback(void * NotUsed, int num_col, char ** fields, char ** col_names)
 {
     //delete data members before updating them...

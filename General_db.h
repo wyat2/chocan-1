@@ -14,6 +14,8 @@
 using namespace std;
 
 const int MAX_RESULTS = 50;
+const int MAX_ROW = 50;
+const int MAX_COL = 10;
 
 class General_db
 {
@@ -21,11 +23,14 @@ class General_db
         General_db();
         ~General_db();
 
-        void get_results(string *& results, int & num_rows);
+        void get_results(string results[MAX_ROW][MAX_COL], int & num_rows,
+                int & num_col);
         string get_error();
         //need to create get_error
 
+        void display_results();
         int display_members();
+        int check_member(string memberNumber);
 
         int exec(const string sql);
         void set_info(int num_col, string col_names, string rows); 
@@ -49,7 +54,7 @@ class General_db
         int num_rows;
         string col_names;
         string rows;
-        string results[MAX_RESULTS];
+        string results[MAX_ROW][MAX_COL];
         /*
         char * zErrMsg;
         int num_col;

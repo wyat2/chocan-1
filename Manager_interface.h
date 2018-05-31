@@ -25,6 +25,7 @@ class Manager_interface
         void display_menu();
         void display_members();
         void req_member_rcrd();
+        int check_member();
 
         bool req_member_rcrd(const char * StartDate, const char * EndDate, 
                 const int & MemberID);

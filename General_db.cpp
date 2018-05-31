@@ -13,7 +13,6 @@
 using namespace std;
 
 const char dbfile[12] = "chocandb.db";
-extern const int RESULTS_MAX;
 
 General_db::General_db():db(NULL), error_msg(""), num_col(0), num_rows(0), 
     col_names(""), rows("")
@@ -32,10 +31,24 @@ General_db::~General_db()
     sqlite3_close(db);
 }
 
-void General_db::get_results(string *& results_in, int & num_rows_in)
+void General_db::get_results(string results_in[MAX_ROW][MAX_COL], 
+        int & num_rows_in, int & num_col_in)
 {
     num_rows_in = this->num_rows;
-    results_in = this->results;
+    num_col_in = this->num_col;
+    //results_in = this->results;
+    
+    //cout << "num_rows: " << this->num_rows << endl;
+    //cout << "num_col: " << this->num_col << endl;
+
+    //might be inefficient to copy over (how to get ref of 2d string arr?)
+    for(int i = 0; i < num_rows; ++i)
+    {
+        for(int j = 0; j < num_col; ++j)
+        {
+            results_in[i][j] = this->results[i][j];
+        }
+    }
 }
 
 string General_db::get_error()
@@ -65,15 +78,53 @@ int General_db::display_members()
     */
 }
 
+int General_db::check_member(string memberNumber)
+{
+    string sql("SELECT validity FROM members WHERE memberNumber = " 
+            + memberNumber);
+    exec(sql);
+    //display_results();
+    if(results[0][0] != "")
+    {
+        //cout << endl << results[0][0];
+        if(results[0][0] == "-1")
+        {
+            return -1;
+        }
+        if(results[0][0] == "1")
+        {
+            return 1;
+        }
+    }
+    return 0;
+}
+
+void General_db::display_results()
+{
+    for(int i = 0; i < num_rows; ++i) //iterates through rows
+    {
+        for(int j = 0; j < num_col; ++j) //iterates through columns
+        {
+            //output a column in the row until no more columns
+            cout << results[i][j] << " "; 
+        }
+        cout << endl; //add new line at end of row
+    }
+}
+
 int General_db::exec(const string sql)
 {
     const unsigned char * temp;
     int rc = 0;
-    for(int i = 0; i < num_rows + 1; ++i)
+    for(int i = 0; i < num_rows; ++i)
     {
-        results[i] = "";
+        for(int j = 0; j < num_col; ++j)
+        {
+            results[i][j] = "";
+        }
     }
     this->num_rows = 0;
+    this->num_col = 0;
 
     rc = sqlite3_prepare_v2(db, sql.c_str(), -1, &res, 0);
 
@@ -86,17 +137,28 @@ int General_db::exec(const string sql)
         return false;
     }
 
+    this->num_col = sqlite3_column_count(res);
     while(sqlite3_step(res) == SQLITE_ROW && num_rows < MAX_RESULTS)
     {
-        num_col = sqlite3_column_count(res);
         for(int i = 0; i < num_col; ++i)
         {
             temp = sqlite3_column_text(res, i);
-            results[num_rows] = results[num_rows] + string(reinterpret_cast<const char *>(temp)) + " ";
+            results[num_rows][i] = string(reinterpret_cast<const char *>(temp));
         }
         ++this->num_rows;
     }
 
+    /*
+    cout << "num_rows: " << this->num_rows << endl;
+    cout << "num_col: " << this->num_col << endl;
+
+    for(int i = 0; i < num_rows; ++i)
+    {
+        for(int j = 0; j < num_col; ++j)
+            cout << results[i][j];
+        cout << endl;
+    }
+    */
     /*
     //to test that results got populated correctly...
     for(int i = 0; i < num_rows; ++i)
