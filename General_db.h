@@ -19,9 +19,10 @@ class General_db
         General_db();
 
         void get_results(string *& results, int & num_rows);
+        string get_error();
         //need to create get_error
 
-        void display_members();
+        int display_members();
 
         int exec(const string sql);
         void set_info(int num_col, string col_names, string rows); 

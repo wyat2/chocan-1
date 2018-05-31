@@ -40,7 +40,11 @@ void Manager_interface::display_menu()
 void Manager_interface::display_members()
 {
     //call display_members function from Manager_db obj
-    manage_db.display_members();//This func calls General_db::exec(string sql)
+    //This func calls General_db::exec(string sql)
+    if(!manage_db.display_members())
+    {
+        cout << "Couldn't display members. \nError: " << manage_db.get_error();
+    }
 
     //get the results from obj
     string * results;

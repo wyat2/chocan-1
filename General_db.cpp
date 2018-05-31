@@ -18,12 +18,12 @@ const int MAX_RESULTS = 50;
 General_db::General_db():db(NULL), error_msg(""), num_col(0), num_rows(0), 
     col_names(""), rows("")
 {
-    cout << "In General_db constructor...";
+    //cout << "In General_db constructor...";
     if(sqlite3_open(dbfile, &db)) //try to open database
     {
         cout << "\nCan't open database\n";
     } else {
-        cout << "\nOpened database successfully\n";
+        //cout << "\nOpened database successfully\n";
     }
 }
 
@@ -33,11 +33,16 @@ void General_db::get_results(string *& results_in, int & num_rows_in)
     results_in = this->results;
 }
 
-void General_db::display_members()
+string General_db::get_error()
+{
+    return error_msg;  
+}
+
+int General_db::display_members()
 {
     //string * results = new string [50];
     string sql("SELECT * FROM members;");
-    exec(sql);
+    return exec(sql);
 
     /*
     //display all members
@@ -55,20 +60,22 @@ void General_db::display_members()
 
 int General_db::exec(const string sql)
 {
+    const unsigned char * temp;
     int rc = 0;
     for(int i = 0; i < num_rows + 1; ++i)
     {
         results[i] = "";
     }
     this->num_rows = 0;
-    const unsigned char * temp;
 
     rc = sqlite3_prepare_v2(db, sql.c_str(), -1, &res, 0);
 
     if(rc != SQLITE_OK)
     {
-        //COPY OVER ERROR INTO DATA MEMBER HERE
-        cout << "Failed to fetch data: " << sqlite3_errmsg(db) << endl;
+        //COPY OVER ERROR INTO DATA MEMBER
+        //cout << "Failed to fetch data: " << sqlite3_errmsg(db) << endl;
+        this->error_msg = "Failed to fetch data: " + string(
+                reinterpret_cast<const char *>(sqlite3_errmsg(db)));
         return false;
     }
 
